@@ -26,3 +26,6 @@ gcc irreversible.c restore.c -o out -I ../include/
 - マップと結果を格納するディレクトリ
    - 複数の結果を見たい場合は下記の部分を変更するといい
    - 後で追記します
+
+- このソフトウェアパッケージは, 3乗降BSDライセンスの下, 再頒布おyp日仕様が許可されます.
+- © 2024 Yuichiro Hatanaka
