@@ -28,5 +28,5 @@ gcc irreversible.c restore.c -o out -I ../include/
    - 後で追記します
  
 ## ライセンス
-- このソフトウェアパッケージは, 3乗降BSDライセンスの下, 再頒布および仕様が許可されます.
+- このソフトウェアパッケージは, 3条項BSDライセンスの下, 再頒布および使用が許可されます.
 - © 2024 Yuichiro Hatanaka
