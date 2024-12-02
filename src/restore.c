@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2024 Yuichiro Hatanaka
+// SPDX-License-Identifier: BSD-3-Clause
+
 #include"vq/restore.h"
 
 int restore(char codebook[], char vq[], char restore[], int width, int height, int start, int rowElem, int colElem, char reData[], int row, int relength){
