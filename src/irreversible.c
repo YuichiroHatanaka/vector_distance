@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2024 Yuichiro Hatanaka
+// SPDX-License-Identifier: BSD-3-Clause
+
 /*
 まずは連続するデータをベクトルとして取得して比較するプログラムを作成
 非可逆の手順

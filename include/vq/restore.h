@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2024 Yuichiro Hatanaka
+// SPDX-License-Identifier: BSD-3-Clause
+
 #ifndef __RESTORE_H__
 #define __RESTORE_H__
 
