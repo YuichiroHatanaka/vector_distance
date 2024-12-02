@@ -4,11 +4,11 @@
 ## 使用方法
 - パッケージを入手
 ```
-git clone git@github.com:YuichiroHatanaka/vector_distance.git
+git clone https://github.com/YuichiroHatanaka/vector_distance.git
 ```
 - 移動
 ```
-cd src/
+cd vector_distance/src/
 ```
 - 下記のコマンドでコンパイル  
 ```
