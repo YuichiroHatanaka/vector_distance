@@ -7,12 +7,17 @@
 比較するベクトルを要素ごとに比較できるようにする
 */
 #include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 #include<vq/restore.h>
 
 #define BLOCK_PATH "../sim/block.bin"
+#define DIRECTORY_PATH "../sim/ir"
+#define IVQ "/irreversible_vq.bin"
+#define IRE "/irreversible_restore.pgm"
 #define CODEBOOK_PATH "../sim/codebook.bin"
-#define VQ_PATH "../sim/ir4/irreversible_vq.bin"
-#define RESTORE_MAP_PATH "../sim/ir4/irreversible_restore.pgm"
+/*#define VQ_PATH "../sim/ir4/irreversible_vq.bin"
+#define RESTORE_MAP_PATH "../sim/ir4/irreversible_restore.pgm"*/
 #define ELEMENT_NUM 4
 
 
@@ -24,18 +29,30 @@ unsigned char data1[ELEMENT_NUM];
 unsigned char data2[ELEMENT_NUM];
 char block[] = BLOCK_PATH;
 char codebook[] = CODEBOOK_PATH;
-char vq[] = VQ_PATH;
+char vq[100];//= VQ_PATH;
 FILE *block_fp, *codebook_fp, *vq_fp;
 unsigned char cnt = 0;
 unsigned char rep_mum = 0;
 //restore
-char re[] = RESTORE_MAP_PATH;
+char re[100];// = RESTORE_MAP_PATH;
 char reData[15] = {0x50, 0x35, 0x0A, 0x33, 0x38, 0x32, 0x20, 0x34, 0x34, 0x34, 0x0A, 0x32, 0x35, 0x35, 0x0A};
 int col = 382;
 char relength = sizeof(reData);
+int vector_distance = 0;
 
 
-int main(void){
+int main(int argc, char *argv[]){
+	//引数を確認
+	vector_distance = atoi(argv[1]);
+	strcat(vq, DIRECTORY_PATH);
+	strcat(vq, argv[1]);
+	strcpy(re, vq);
+	strcat(vq, IVQ);
+	strcat(re, IRE);
+	printf("vq %s\n", vq);
+	printf("re %s\n", re);
+	printf("許容できるベクトルの違う要素の数は%d\n", vector_distance);
+
 	if((block_fp = fopen(block, "rb")) == NULL){
 		perror("ERROR: cannot open block file\n");
 		fclose(block_fp);
@@ -90,7 +107,7 @@ int main(void){
 				diff_element_num++;
 			}
 		}
-		if(diff_element_num <= 4){
+		if(diff_element_num <= vector_distance){
 			printf("\n符号帳の%d番目の代表ベクトルと一致\n\n", cnt + 1);
 			fwrite(&cnt, sizeof(char), 1, vq_fp);
 			break;
