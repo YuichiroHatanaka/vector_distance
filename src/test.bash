@@ -3,7 +3,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 distance=$1
-if [ -z "" ]; then
+echo $1
+if [ -z "$1" ]; then
 distance=0
 fi
 gcc irreversible.c restore.c -o out -I ../include
