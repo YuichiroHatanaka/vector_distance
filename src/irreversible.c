@@ -12,7 +12,7 @@
 #include<vq/restore.h>
 
 #define UP_DIR "../"
-#define DIR_NAME "sim16"
+#define DIR_NAME "tsudanuma/16"
 #define BLOCK_FILE "/block.bin"
 #define DIRECTORY_PATH "/ir"
 #define IVQ "/irreversible_vq.bin"
@@ -31,12 +31,12 @@ char block[100];
 char codebook[100];
 char vq[100];//= VQ_PATH;
 FILE *block_fp, *codebook_fp, *vq_fp;
-unsigned short cnt = 0;
+int cnt = 0;
 unsigned char rep_mum = 0;
 //restore
 char re[100];// = RESTORE_MAP_PATH;
-char reData[15] = {0x50, 0x35, 0x0A, 0x33, 0x38, 0x34, 0x20, 0x34, 0x34, 0x34, 0x0A, 0x32, 0x35, 0x35, 0x0A};
-int col = 384;
+char reData[17] = {0x50, 0x35, 0x0A, 0x35, 0x38, 0x38, 0x38, 0x20, 0x34, 0x30, 0x30, 0x30, 0x0A, 0x32, 0x35, 0x35, 0x0A};
+int col = 5888;
 char relength = sizeof(reData);
 int vector_distance = 0;
 
@@ -118,7 +118,7 @@ int main(int argc, char *argv[]){
 			if(diff_element_num <= vector_distance){
 				printf("符号帳の%03d番目の代表ベクトルと一致\n", cnt + 1);
 				//新しいコードブックを作成
-				fwrite(&cnt, sizeof(short), 1, vq_fp);
+				fwrite(&cnt, sizeof(int), 1, vq_fp);
 				break;
 			}
 		}
@@ -127,6 +127,6 @@ int main(int argc, char *argv[]){
 	fclose(codebook_fp);
 	fclose(vq_fp);
 	
-	restore(codebook, vq, re, 384, 444, 15, 4, 4, reData, col, relength);
+	restore(codebook, vq, re, 5888, 4000, 17, 4, 4, reData, col, relength);
 	return 0;
 }
